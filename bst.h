@@ -5,8 +5,8 @@ class bstNode{
 
     public:
         int key;
-        bstNode *left;
-        bstNode *right;
+        bstNode *leftChild;
+        bstNode *rightChild;
     
 
 };
