@@ -7,7 +7,7 @@ class bstNode{
         int key;
         bstNode *leftChild;
         bstNode *rightChild;
-    
+ 
 
 };
 
@@ -20,11 +20,11 @@ class binarySearchTree{
         void insert(int key);
         bool remove(int key);
         bstNode findMin();
-        bstNode findMax();    
-
-
+        bstNode findMax();
+        void displayTree();    
 
     private:
         bstNode *root;
+        void displayTreeHelper(bstNode *&current);
 
 };

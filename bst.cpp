@@ -16,11 +16,12 @@ binarySearchTree::~binarySearchTree(){
 void binarySearchTree::insert(int key){
 
 		bstNode *newNode = new bstNode(); // init a new node
+		newNode->key = key;
 		
 		if (root == NULL) 
 		{
 			root = newNode; // if nothing is in the tree, create a newnode
-			
+			//newNode->key = key;
 		}
 		else {
 			
@@ -33,18 +34,18 @@ void binarySearchTree::insert(int key){
 				
 				parent = current;
 				if(key < current->key) {
-					current = current.leftChild;
+					current = current->leftChild;
 					
-					if(current == null) { // it's parent is the leaf node
+					if(current == NULL) { // it's parent is the leaf node
 						
-						parent.leftChild = newNode; //inserts into the proper position
+						parent->leftChild = newNode; //inserts into the proper position
 						return;
 					}
 				} else {
 					
-					current = current.rightChild;
-					if(current == null) {
-						parent.rightChild = newNode;
+					current = current->rightChild;
+					if(current == NULL) {
+						parent->rightChild = newNode;
 						return;
 					}
 					
@@ -55,13 +56,47 @@ void binarySearchTree::insert(int key){
 			
 			
 		}
-		
-
 
 
 }
 bool binarySearchTree::remove(int key){
 
 
+
+}
+void binarySearchTree::displayTree(){
+
+    displayTreeHelper(root);
+
+}
+void binarySearchTree::displayTreeHelper(bstNode *&current){
+
+    		//bstNode currentNode = current;
+            
+            
+            if(current!=NULL) {
+			
+			if(current->leftChild !=NULL) { // if left one is pointing to something
+				
+				//recursively call displaytreeprivate
+				displayTreeHelper(current->leftChild);
+			}
+			
+			//print contents of node
+			std::cout << current->key <<"\n";
+			
+			if(current->rightChild!=NULL) {
+				
+				//recursively call displaytreeprivate
+				displayTreeHelper(current->rightChild);
+				
+			}
+			
+		}
+		else {
+			
+			std::cout << "Tree is empty";
+		}
+		
 
 }
