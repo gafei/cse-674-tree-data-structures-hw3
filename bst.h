@@ -21,10 +21,18 @@ class binarySearchTree{
         bool remove(int key);
         bstNode findMin();
         bstNode findMax();
-        void displayTree();    
+        void displayTree(); 
+        void genDataS1();
+        void genDataS2();
+        int printHeight();
+       
+        
+
 
     private:
         bstNode *root;
-        void displayTreeHelper(bstNode *&current);
+        void displayTreeHelper(bstNode *current);
+        int printHeightHelper(bstNode *node);
+
 
 };
