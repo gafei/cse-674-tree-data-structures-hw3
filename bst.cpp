@@ -107,6 +107,11 @@ void binarySearchTree::genDataS1(){
 	for(int i = 1; i<=100; i++){
 		insert(i);
 
+			if(i % 10 == 0 && i!=0){
+			std::cout <<"Height after " << i << " insertions " << printHeight() <<"\n";
+		}
+
+
 	}
 
 
@@ -126,6 +131,11 @@ void binarySearchTree::genDataS2(){
             //std::cout << numbers[i] << std::endl;
             int num = numbers[i];
             insert(num);
+
+			if(i % 10 == 0 && i!=0){
+			std::cout <<"Height after " << i << " insertions " << printHeight() <<"\n";
+		}
+
         
 
         }
