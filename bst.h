@@ -19,6 +19,7 @@ class binarySearchTree{
 
         void insert(int key);
         bool remove(int key);
+
         bstNode findMin();
         bstNode findMax();
         void displayTree(); 
@@ -26,6 +27,9 @@ class binarySearchTree{
         void genDataS2();
         int printHeight();
        
+        void binaryInsert(int key);
+        bool binaryRemove(int key);
+
         
 
 
@@ -33,6 +37,9 @@ class binarySearchTree{
         bstNode *root;
         void displayTreeHelper(bstNode *current);
         int printHeightHelper(bstNode *node);
+
+        bstNode & getSuccessor(bstNode *nodetoDelete);
+
 
 
 };

@@ -64,6 +64,143 @@ void binarySearchTree::insert(int key){
 }
 bool binarySearchTree::remove(int key){
 
+			// 3 main steps in here
+		
+		bstNode *currentNode = root;
+		bstNode *parentNode = root; // parent of 'currentNode'
+		
+		bool isLeftChild = false; //flag to determine if it's a left or right child
+		
+		// Searching to find the node with the key to delete
+		while(currentNode->key !=key) {
+			
+			//assign parentnode to currentnode
+			
+			parentNode = currentNode;
+			
+			if(key < currentNode->key) {
+				
+				isLeftChild = true;
+				currentNode = currentNode->leftChild; //keep searching  
+				
+			}else{
+				
+				currentNode = currentNode->rightChild; // this is a right child 
+				isLeftChild = false;
+				
+			}
+			
+			if(currentNode == NULL) {
+				return false;
+			}
+			
+			
+		}
+		
+		// found the node that you want to delete
+		
+		
+		// make nodetoDelete 'currentnode'. Since currentnode was used to 
+		// traverse through the array, we're giving it a new node name now
+		
+		bstNode *nodetoDelete = currentNode; 
+		
+		
+		
+		
+		// check if node is a leaf node (node with no children)
+		// assign parent's child attribute to null;
+		
+		if(nodetoDelete->leftChild == NULL && nodetoDelete->rightChild == NULL)
+		{
+			// that means there's no children here.
+			// change the child reference to be a node
+			
+			if(nodetoDelete == root) {
+				
+				root = NULL;
+			}
+			
+			else if(isLeftChild) {
+				parentNode->leftChild = NULL;
+				
+			}
+			else {
+				parentNode->rightChild = NULL;
+			}
+			
+			
+		} // if node has one child that is on the left
+		else if(nodetoDelete->rightChild == NULL) {
+			
+			if(nodetoDelete ==root) {
+				root = nodetoDelete->leftChild;
+			}
+			else if (isLeftChild) {
+				parentNode->leftChild = nodetoDelete->leftChild;
+			}
+			else {
+				parentNode->rightChild = nodetoDelete->leftChild;
+			}
+			
+		}
+		// if node has one child that is on the right
+		else if(nodetoDelete->leftChild == NULL) {
+			
+			if(nodetoDelete ==root) {
+				root = nodetoDelete->rightChild;
+			}
+			else if (isLeftChild) {
+				parentNode->leftChild = nodetoDelete->rightChild;
+			}
+			else {
+				parentNode->rightChild = nodetoDelete->rightChild;
+			}
+		
+		}
+		
+		
+		
+		// check if node is a child (at least one)
+		// copy the subtree to the leading node's position
+		
+		
+		// check if node has two children
+		
+		else {
+			
+			// find the smallest of the set of nodes
+			// that are larger/replace the number you're deleting
+			
+			// get successor of the node
+			
+			
+			// sucessor is the min value out of the set of values
+			// that is LARGER than the node that we're trying to delete
+			bstNode successor = getSuccessor(nodetoDelete);
+			
+			// find min value to delete
+			// connect parent of the nodetodelete with the sucessor instead
+			
+			if(nodetoDelete == root) {
+				
+				root = &successor;
+				
+			}else if(isLeftChild){
+				
+				parentNode->leftChild = &successor;
+			}
+			else {
+				
+				parentNode->rightChild = &successor;
+			}
+			
+			successor.leftChild = nodetoDelete->leftChild;
+			
+		}
+		
+		return true; // if able to delete
+
 
 
 }
@@ -85,7 +222,7 @@ void binarySearchTree::displayTreeHelper(bstNode *current){
 			}
 			
 			//print contents of node
-			std::cout << current->key <<"\n";
+			std::cout << current->key <<", ";
 			
 			if(current->rightChild!=NULL) {
 				
@@ -114,8 +251,6 @@ void binarySearchTree::genDataS1(){
 
 	}
 
-
-
 }
 void binarySearchTree::genDataS2(){
  std::vector<int> numbers;
@@ -126,15 +261,19 @@ void binarySearchTree::genDataS2(){
     unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
     std::shuffle(numbers.begin(), numbers.end(), std::default_random_engine(seed));
 
-    for(int i=0; i<100; i++)        // print the first 100 randomly sorted numbers
+	int counter =1;
+    for(int i=0; i<3; i++)        // print the first 100 randomly sorted numbers
         {
             //std::cout << numbers[i] << std::endl;
+
             int num = numbers[i];
             insert(num);
-
-			if(i % 10 == 0 && i!=0){
-			std::cout <<"Height after " << i << " insertions " << printHeight() <<"\n";
-		}
+			counter++;
+		
+			if(counter % 10 == 0 ){ //&& i!=0
+				std::cout <<"Height after " << counter << " insertions " << printHeight() <<"\n";
+			
+			}
 
         
 
@@ -165,5 +304,37 @@ int binarySearchTree::printHeightHelper(bstNode *node){
 int binarySearchTree::printHeight(){
 
 	return (printHeightHelper(root));
+
+}
+bstNode & binarySearchTree::getSuccessor(bstNode *nodetoDelete){
+		
+		bstNode *successorParent = nodetoDelete;
+		bstNode *successor = nodetoDelete;
+		bstNode *current = nodetoDelete->rightChild;
+		
+		while(current!=NULL) { //start going down tree until node has no left child
+			
+			successorParent = successor;
+			successor = current;
+			current = current->leftChild;
+			
+		}
+		
+		// if successor is not a right child
+		if(successor!= nodetoDelete->rightChild) {
+			
+			successorParent->leftChild = successor->rightChild;
+			successor->rightChild = nodetoDelete->rightChild;
+			
+		}
+		return *successor;
+}
+
+
+void binarySearchTree::binaryInsert(int key){
+
+}
+
+bool binarySearchTree::binaryRemove(int key){
 
 }

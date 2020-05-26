@@ -19,10 +19,13 @@ int main(int argc, char *argv[]){
     *****/
     //binarySearchTreeObj.genDataS1();
 
-    binarySearchTreeObj.genDataS1();
+   binarySearchTreeObj.genDataS1();
+   binarySearchTreeObj.remove(50);
+   
    int x = binarySearchTreeObj.printHeight();
    std::cout << "Height is: " << x <<"\n";
-    //binarySearchTreeObj.displayTree();
+    binarySearchTreeObj.displayTree();
+    std::cout <<"\n";
 
 
     return 0;
