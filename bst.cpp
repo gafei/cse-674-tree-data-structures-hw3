@@ -204,30 +204,37 @@ bool binarySearchTree::remove(int key){
 
 
 }
-void binarySearchTree::displayTree(){
+void binarySearchTree::displayTreeInOrder(){
 
-    displayTreeHelper(root);
+    displayTreeHelperInOrder(root);
 
 }
-void binarySearchTree::displayTreeHelper(bstNode *current){
+void binarySearchTree::displayTreeHelperInOrder(bstNode *current){
 
     		//bstNode currentNode = current;
-            
+        
             if(current!=NULL) {
 			
 			if(current->leftChild !=NULL) { // if left one is pointing to something
 				
-				//recursively call displaytreeprivate
-				displayTreeHelper(current->leftChild);
+				//recursively call displaytreehelperinorder
+				displayTreeHelperInOrder(current->leftChild);
 			}
 			
 			//print contents of node
-			std::cout << current->key <<", ";
+			if(current->key ==100)
+			{
+				std::cout << current->key <<"";
+			}
+			else{
+				std::cout << current->key <<", ";	
+			}
+			//std::cout << current->key <<", ";
 			
 			if(current->rightChild!=NULL) {
 				
-				//recursively call displaytreeprivate
-				displayTreeHelper(current->rightChild);
+				//recursively call displaytreehelperinorder
+				displayTreeHelperInOrder(current->rightChild);
 				
 			}
 			
@@ -262,7 +269,7 @@ void binarySearchTree::genDataS2(){
     std::shuffle(numbers.begin(), numbers.end(), std::default_random_engine(seed));
 
 	int counter =1;
-    for(int i=0; i<3; i++)        // print the first 100 randomly sorted numbers
+    for(int i=0; i<100; i++)        // print the first 100 randomly sorted numbers
         {
             //std::cout << numbers[i] << std::endl;
 
@@ -271,7 +278,11 @@ void binarySearchTree::genDataS2(){
 			counter++;
 		
 			if(counter % 10 == 0 ){ //&& i!=0
+				std::cout<<"\n";
 				std::cout <<"Height after " << counter << " insertions " << printHeight() <<"\n";
+				std::cout <<"Tree structure after " << counter << " insertions \n";
+				displayTreeInOrder();
+				std::cout<<"\n";
 			
 			}
 
