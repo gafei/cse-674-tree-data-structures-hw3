@@ -20,7 +20,8 @@ int main(int argc, char *argv[]){
     //binarySearchTreeObj.genDataS1();
 
     binarySearchTreeObj.genDataS2();
-    binarySearchTreeObj.remove(50);
+    bool removal = binarySearchTreeObj.remove(50);
+    std::cout <<"Removal is: " << removal <<"\n";
    
     int x = binarySearchTreeObj.printHeight();
     std::cout << "Height is: " << x <<"\n\n";

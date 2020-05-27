@@ -19,6 +19,8 @@ class binarySearchTree{
 
         void insert(int key);
         bool remove(int key);
+        void searchKey(bstNode* &curr, int key, bstNode* &parent);
+        bstNode* minimumKey(bstNode* curr);
 
         bstNode findMin();
         bstNode findMax();
