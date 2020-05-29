@@ -461,8 +461,73 @@ bstNode & binarySearchTree::getSuccessor(bstNode *nodetoDelete){
 
 void binarySearchTree::binaryInsert(int key){
 
+
+
+
 }
 
 bool binarySearchTree::binaryRemove(int key){
+
+}
+int binarySearchTree::binarySearch(std::vector<int> &inputVector, int x){
+
+	int p = 0; //this is the first number in the vector
+	int r = inputVector.size()-1; // length of vector
+
+	while(p <=r){
+
+		int q = (p+r)/2; // find the midpoint
+		if(inputVector[q] ==x ){
+
+			return q; // return the index if the number is found
+
+		}
+		else if (inputVector[q] > x){
+
+			r = q-1; //if the index that was found is greater then the number
+					// to be searched, then make "r", (end number) smaller
+		}
+		else{
+
+			p = q+1; //otherwise, increase the index of the number
+		}
+
+
+	}
+
+	return -1;
+
+}
+int binarySearchTree::recursivebinarySearch(std::vector<int> &inputVector, int start, int end, int x){
+
+	std::cout <<"Searching in ...." << start << "...." << end << "\n";
+
+	if (start > end){
+
+		return -1;
+	}
+
+	else{
+
+		int q = (start + end )/2; // q is the midpoint that we found
+		if(inputVector[q] == x ){
+
+			return q;
+
+		}
+
+		else if(inputVector[q] > x){
+
+			return(recursivebinarySearch(inputVector, start, q-1, x)); //search array left of midpoint
+		}
+		else{
+
+			return(recursivebinarySearch(inputVector, start, q+1, x)); //search array right of midpoint
+		}
+
+	}
+
+
+
 
 }

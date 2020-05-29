@@ -31,6 +31,9 @@ class binarySearchTree{
        
         void binaryInsert(int key);
         bool binaryRemove(int key);
+        int binarySearch(std::vector<int> &inputVector, int x);
+        int recursivebinarySearch(std::vector<int> &inputVector, int start, int end, int x);
+        
 
         
 
