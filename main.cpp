@@ -36,9 +36,15 @@ int main(int argc, char *argv[]){
 *************/
 
 // Part 2
- bstdswObj.genDataS2();
-    bool removal = bstdswObj.remove(50);
-    std::cout <<"Removal is: " << removal <<"\n";
+ //bstdswObj.genDataS2(); // is this like the backbone?
+    bstdswNode *root;
+    
+    root->key = 2;
+    
+    //bstdswObj.createBackBone(root, 2);
+    bstdswObj.createPrefectTree();
+    //bool removal = bstdswObj.remove(50);
+    //std::cout <<"Removal is: " << removal <<"\n";
    
     int x = bstdswObj.printHeight();
     std::cout << "Height is: " << x <<"\n\n";

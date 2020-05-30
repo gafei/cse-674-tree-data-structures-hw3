@@ -225,9 +225,9 @@ void bstdsw::createBackBone(bstdswNode *& root, int n){
 
 
 }
-void bstdsw::createPrefectTree(int n){
+void bstdsw::createPrefectTree(){
 
-    n =0;
+    int n =0;
     bstdswNode *temp = root;
     
     for (temp; temp!=NULL; temp = temp->rightChild){
