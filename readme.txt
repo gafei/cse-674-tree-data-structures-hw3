@@ -15,3 +15,5 @@ DSW
 http://courses.cs.vt.edu/cs2604/spring05/mcpherson/note/BalancingTrees.pdf
 
 http://www.geekviewpoint.com/java/bst/dsw_algorithm
+
+https://github.com/palkakrzysiek/IT-class/blob/master/algorithms/structures/bst.cpp

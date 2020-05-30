@@ -36,18 +36,19 @@ int main(int argc, char *argv[]){
 *************/
 
 // Part 2
- //bstdswObj.genDataS2(); // is this like the backbone?
-    bstdswNode *root;
+    bstdswObj.genDataS2(); // is this like the backbone?
+
+    //root->key = 2;
     
-    root->key = 2;
-    
-    //bstdswObj.createBackBone(root, 2);
-    bstdswObj.createPrefectTree();
+    //bstdswObj.createBackBone();
+    //std::cout <<"Backbone Created: \n";
+    //bstdswObj.createPrefectTree();
     //bool removal = bstdswObj.remove(50);
     //std::cout <<"Removal is: " << removal <<"\n";
+
    
-    int x = bstdswObj.printHeight();
-    std::cout << "Height is: " << x <<"\n\n";
+    //int x = bstdswObj.printHeight();
+    //std::cout << "Height is: " << x <<"\n\n";
     std::cout << "Binary Search Tree In Order is:" << "\n";
     bstdswObj.displayTreeInOrder();
     std::cout <<"\n";

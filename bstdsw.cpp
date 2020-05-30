@@ -195,9 +195,14 @@ bstdswNode* bstdsw::rotateLeft(bstdswNode *& grandParent, bstdswNode *& parent, 
 
 }
 
+void bstdsw::createBackBone(){
+
+    createBackBoneHelper(root);
+
+}
 
 
-void bstdsw::createBackBone(bstdswNode *& root, int n){
+void bstdsw::createBackBoneHelper(bstdswNode *& root){
 
    bstdswNode *grandParent = nullptr;
    bstdswNode *parent = root;
@@ -225,14 +230,14 @@ void bstdsw::createBackBone(bstdswNode *& root, int n){
 
 
 }
-void bstdsw::createPrefectTree(){
+void bstdsw::createPerfectTree(){
 
     int n =0;
     bstdswNode *temp = root;
     
     for (temp; temp!=NULL; temp = temp->rightChild){
 
-        n++;
+        n++; // counts nodes
 
     }
     //m = 2^floor[lg(n+1)]-1, ie the greatest power of 2 less than n: minus 1
@@ -298,6 +303,11 @@ void bstdsw::genDataS1(){
 			std::cout <<"Height after " << i << " insertions: " << printHeight() <<"\n";
 			std::cout <<"Tree structure after " << i << " insertions \n";
 			displayTreeInOrder();
+
+            std::cout <<"\nRunning DSW algorithm after " << i << " insertions: \n";
+            createBackBone();
+            std::cout << printHeight() << "\n";
+
 			std::cout<<"\n";
 
 		}
@@ -326,9 +336,23 @@ void bstdsw::genDataS2(){
 		
 			if(counter % 10 == 0 ){ //&& i!=0
 				std::cout<<"\n";
+                std::cout <<"Original "; // Original root is:
+                printRoot();
+
 				std::cout <<"Height after " << counter << " insertions: " << printHeight() <<"\n";
 				std::cout <<"Tree structure after " << counter << " insertions \n";
 				displayTreeInOrder();
+
+                std::cout <<"\nCreating backbone after " << counter << " insertions: \n";
+                createBackBone(); // should only have right children and NO left children, asecnding order.
+                std::cout << "New "; // New root is
+                printRoot();
+                
+                std::cout <<"\nCreating perfect tree  after " << counter << " insertions: \n";
+                createPerfectTree();
+
+                std::cout << "Height after DSW " << printHeight() << "\n";
+                displayTreeInOrder();
 				std::cout<<"\n";
 			
 			}
@@ -412,5 +436,10 @@ int bstdsw::printHeight(){
 	//std::cout <<"Root is: " << root->key <<"\n";
 	return (printHeightHelper(root));
 
+}
+
+void bstdsw::printRoot(){
+    std::cout <<"Root is: " << root->key <<"\n";
+    
 }
 
