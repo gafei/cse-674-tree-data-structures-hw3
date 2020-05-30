@@ -22,8 +22,8 @@ class binarySearchTree{
         void searchKey(bstNode* &curr, int key, bstNode* &parent);
         bstNode* minimumKey(bstNode* curr);
 
-        bstNode findMin();
-        bstNode findMax();
+       // bstNode findMin();
+       // bstNode findMax();
         void displayTreeInOrder(); 
         void genDataS1();
         void genDataS2();

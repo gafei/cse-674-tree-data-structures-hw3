@@ -23,13 +23,33 @@ class bstdsw{
         void searchKey(bstdswNode* &curr, int key, bstdswNode* &parent);
         bstdswNode* minimumKey(bstdswNode* curr);
 
-        bstdswNode findMin();
-        bstdswNode findMax();
+        bstdswNode* rotateRight(bstdswNode *& grandParent, bstdswNode *& parent, bstdswNode *& child);
+        bstdswNode* rotateLeft(bstdswNode *& grandParent, bstdswNode *& parent, bstdswNode *& rightChild);
+        void createBackBone(bstdswNode *& root, int n);
+        void createPrefectTree(int n);
+
+
         void displayTreeInOrder(); 
         void genDataS1();
         void genDataS2();
         int printHeight();
 
+    private:
+        bstdswNode *root;
+        int greatestPowerOf2LessThanN(int n);
+        int MSB(int n);
+        void makeRotations(int bound);
+
+        void displayTreeHelperInOrder(bstdswNode *current);
+        int printHeightHelper(bstdswNode *node);
+
+        bstdswNode & getSuccessor(bstdswNode *nodetoDelete);
+
+
+        //void displayTreeHelperInOrder(bstNode *current);
+       // int printHeightHelper(bstNode *node);
+
+       // bstNode & getSuccessor(bstNode *nodetoDelete);
 
 
 };
