@@ -44,12 +44,14 @@ class bstdsw{
 
         bstdswNode* rotateRight(bstdswNode *& grandParent, bstdswNode *& parent, bstdswNode *& child);
         //bstdswNode* rotateLeft(bstdswNode *& grandParent, bstdswNode *& parent, bstdswNode *& rightChild);
-        void rotateLeft(bstdswNode *& grandParent);
+        bstdswNode* rotateLeft(bstdswNode *& inputNode);
         void createBackBone();
-        void createPerfectTree(int counter);
+        //void createPerfectTree(int counter);
+        void createPerfectTree(bstdswNode *& inputNode);
+        bstdswNode * compress(bstdswNode *inputNode, int count);
 
-
-        void displayTreeInOrder(); 
+        void displayTreeInOrder();
+        void displayTreePreOrder(); 
         void genDataS1();
         void genDataS2();
         int printHeight();
@@ -57,13 +59,16 @@ class bstdsw{
 
     private:
         bstdswNode *root;
+        //bstdsw *tree;
+
         int size;
         void createBackBoneHelper(bstdswNode *& root);
-        int greatestPowerOf2LessThanN(int n);
-        int MSB(int n);
-        void makeRotations(int bound);
+       // int greatestPowerOf2LessThanN(int n);
+       // int MSB(int n);
+       // void makeRotations(int bound);
 
-        void displayTreeHelperInOrder(bstdswNode *current);
+        void displayTreeInOrderHelper(bstdswNode *current);
+        void displayTreePreOrderHelper(bstdswNode *current); 
         int printHeightHelper(bstdswNode *node);
 
         bstdswNode & getSuccessor(bstdswNode *nodetoDelete);
