@@ -349,18 +349,47 @@ void binarySearchTree::displayTreeHelperInOrder(bstNode *current){
 		
 
 }
+void binarySearchTree::displayTreePreOrderHelper( bstNode *node){
+
+	bstNode *current = node;
+
+	if(node!=NULL){
+
+		std::cout << current->key <<", ";
+		displayTreePreOrderHelper(current->leftChild);
+		displayTreePreOrderHelper(current->rightChild);
+
+	}
+
+}
+void binarySearchTree::displayTreePreOrder(){
+	
+		displayTreePreOrderHelper(root);
+}
+
+
+
 void binarySearchTree::genDataS1(){
 
 	for(int i = 1; i<=100; i++){
 		insert(i);
 
 			if(i % 10 == 0 && i!=0){
-			
+			/********
 			std::cout<<"\n";
 			std::cout <<"Height after " << i << " insertions: " << printHeight() <<"\n";
-			std::cout <<"Tree structure after " << i << " insertions \n";
+			std::cout <<"Tree structure in order after " << i << " insertions \n";
 			displayTreeInOrder();
 			std::cout<<"\n";
+			************/
+
+			std::cout <<"Tree structure Pre Order after " << i << " insertions \n";
+			displayTreePreOrder();
+			std::cout <<"\nTree structure In Order after " << i << " insertions \n";
+			displayTreeInOrder();
+			std::cout <<"\nInitial Height after " << i << " insertions: " << printHeight() <<"\n";
+			std::cout<<"\n";
+
 
 		}
 
@@ -387,11 +416,21 @@ void binarySearchTree::genDataS2(){
 			counter++;
 		
 			if(counter % 10 == 0 ){ //&& i!=0
+
+			/********
 				std::cout<<"\n";
 				std::cout <<"Height after " << counter << " insertions: " << printHeight() <<"\n";
 				std::cout <<"Tree structure after " << counter << " insertions \n";
 				displayTreeInOrder();
 				std::cout<<"\n";
+			*****************/
+
+			std::cout <<"Tree structure Pre Order after " << counter << " insertions \n";
+			displayTreePreOrder();
+			std::cout <<"\nTree structure In Order after " << counter << " insertions \n";
+			displayTreeInOrder();
+			std::cout <<"\nInitial Height after " << counter << " insertions: " << printHeight() <<"\n";
+			std::cout<<"\n";
 			
 			}
 
@@ -407,24 +446,28 @@ int binarySearchTree::printHeightHelper(bstNode *node){
 	bstNode *current = node;
 
     //if (current == NULL)
-	if (current == NULL || (current->leftChild==NULL 
-		&& current->rightChild==NULL)) { //or current = 0x01? // or current->leftC
+	//if (current == NULL || (current->leftChild==NULL 
+	//	&& current->rightChild==NULL)) { //or current = 0x01? // or current->leftC
+        if (current == NULL){
 		// This is an empty tree
 		return -1;
+	
 	}
 	
 	      
     else
     {  
-        /* compute the depth of each subtree */
-
-        int lDepth = printHeightHelper(current->leftChild);  
-        int rDepth = printHeightHelper(current->rightChild);  
+       
+        int leftHeight = printHeightHelper(current->leftChild);  
+        int rightHeight = printHeightHelper(current->rightChild);  
       
-        /* use the larger one */
-        if (lDepth > rDepth)  
-            return(lDepth + 1);  
-        else return(rDepth + 1); 
+		if(leftHeight > rightHeight){
+			return (leftHeight + 1);
+		}else{
+			return (rightHeight +1);
+		}
+
+
     }
 
 }

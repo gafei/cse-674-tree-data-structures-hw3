@@ -11,6 +11,24 @@ In this homework, we're asked to implment different versions of
 the balanced Binary Search Trees and analyze them.
 
 
+------------
+Binary Search Tress
+------------
+
+------------
+DSW Algorithm
+------------
+
+
+------------
+AVL Algorithm
+------------
+
+
+------------
+Splay Tree Algorithm
+------------
+
 DSW
 http://courses.cs.vt.edu/cs2604/spring05/mcpherson/note/BalancingTrees.pdf
 
