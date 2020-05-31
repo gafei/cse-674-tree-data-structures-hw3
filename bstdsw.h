@@ -8,6 +8,14 @@ class bstdswNode{
         int key;
         bstdswNode *leftChild;
         bstdswNode *rightChild;
+        bstdswNode(){
+            leftChild =0; rightChild=0;
+        }
+        bstdswNode(int key1){
+            key = key1;
+            leftChild=0;
+            rightChild=0; 
+        }
 
 
 };
@@ -15,7 +23,18 @@ class bstdswNode{
 class bstdsw{
 
     public:
-        bstdsw();
+       // bstdsw();
+        
+        bstdsw(){
+            root=0;
+            size=0;
+        }
+        bstdsw(int key){
+
+        root = new bstdswNode(key); 
+        size = 1;
+
+    }
         ~bstdsw();
 
         void insert(int key);
@@ -24,7 +43,8 @@ class bstdsw{
         bstdswNode* minimumKey(bstdswNode* curr);
 
         bstdswNode* rotateRight(bstdswNode *& grandParent, bstdswNode *& parent, bstdswNode *& child);
-        bstdswNode* rotateLeft(bstdswNode *& grandParent, bstdswNode *& parent, bstdswNode *& rightChild);
+        //bstdswNode* rotateLeft(bstdswNode *& grandParent, bstdswNode *& parent, bstdswNode *& rightChild);
+        void rotateLeft(bstdswNode *& grandParent);
         void createBackBone();
         void createPerfectTree();
 
@@ -37,6 +57,7 @@ class bstdsw{
 
     private:
         bstdswNode *root;
+        int size;
         void createBackBoneHelper(bstdswNode *& root);
         int greatestPowerOf2LessThanN(int n);
         int MSB(int n);

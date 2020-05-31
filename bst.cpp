@@ -409,7 +409,8 @@ int binarySearchTree::printHeightHelper(bstNode *node){
     //if (current == NULL)
 	if (current == NULL || (current->leftChild==NULL 
 		&& current->rightChild==NULL)) { //or current = 0x01? // or current->leftC
-		return 0;
+		// This is an empty tree
+		return -1;
 	}
 	
 	      

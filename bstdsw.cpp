@@ -4,13 +4,15 @@
 #include <chrono>
 #include <random>
 #include "bstdsw.h"
-
+/****
 bstdsw::bstdsw(){
 
     root=NULL;
 
 
 }
+*****/
+
 bstdsw::~bstdsw(){
 
     //destrutor
@@ -179,6 +181,7 @@ bstdswNode* bstdsw::rotateRight(bstdswNode *& grandParent, bstdswNode *& parent,
 
 
 }
+/********
 bstdswNode* bstdsw::rotateLeft(bstdswNode *& grandParent, bstdswNode *& parent, bstdswNode *& rightChild){
 
     if(grandParent != NULL){
@@ -192,6 +195,18 @@ bstdswNode* bstdsw::rotateLeft(bstdswNode *& grandParent, bstdswNode *& parent, 
 
     return grandParent;
 
+
+}
+**************/
+void bstdsw::rotateLeft(bstdswNode *& grandParent){
+
+        if(!grandParent) return;
+        bstdswNode *par = grandParent->rightChild;
+        if(!par)return;
+        bstdswNode *ch  = par->rightChild;
+        grandParent->rightChild=par->leftChild;
+        par->leftChild=grandParent;
+        grandParent = par;
 
 }
 
@@ -223,6 +238,11 @@ void bstdsw::createBackBoneHelper(bstdswNode *& root){
 
 
         }
+        //special case
+        if(grandParent == NULL){
+            root = leftChild;
+
+        }
 
     }
 
@@ -231,7 +251,7 @@ void bstdsw::createBackBoneHelper(bstdswNode *& root){
 
 }
 void bstdsw::createPerfectTree(){
-
+/***************
     int n =0;
     bstdswNode *temp = root;
     
@@ -247,6 +267,41 @@ void bstdsw::createPerfectTree(){
     while (m > 1) {
         makeRotations(m /= 2);
     }
+***********************/
+    int n = size ; // hardcoded for 10 for now
+    //int size = 10;
+    int m = (1<<((int)(log10(n+1)/log10(2))))-1;
+        int i;
+        bstdswNode *Gr=0,*tmp;
+        if(size<3)return;printf("%d\n",m);
+        for(i=0,Gr=root;i<n-m;i++){
+            if(i==0){
+    
+                Gr = Gr->rightChild;
+                rotateLeft(root);  
+            }else if(Gr&&Gr->rightChild){
+                
+                tmp = Gr->rightChild->rightChild;
+                rotateLeft(Gr->rightChild);
+                Gr = tmp;
+            }
+        }
+        while(m>1){
+            m = m/2;
+            for(i=0,Gr=root;i<m;i++){
+                if(i==0){
+                    Gr = Gr->rightChild;
+                    rotateLeft(root);
+                }else if(Gr&&Gr->rightChild){
+                    tmp = Gr->rightChild->rightChild;
+                    rotateLeft(Gr->rightChild);
+                    Gr = tmp;
+                }
+            }
+        }
+
+
+
 
 }
 
@@ -276,10 +331,16 @@ void bstdsw::makeRotations(int bound) {
   
   for (; bound > 0; bound--) {
       if (child != NULL) {
-        rotateLeft(grandParent, parent, child);
+       // rotateLeft(grandParent, parent, child);
         grandParent = child;
         parent = grandParent->rightChild;
-        child = parent->rightChild;
+        if(grandParent->rightChild){
+            child = parent->rightChild;
+        }
+        else{
+            std::cout <<"No grandparent with a rightchild\n";
+            break; }
+        
       } 
       else {
           std::cout << "Couldn't perform rotations\n";
@@ -347,11 +408,13 @@ void bstdsw::genDataS2(){
                 createBackBone(); // should only have right children and NO left children, asecnding order.
                 std::cout << "New "; // New root is
                 printRoot();
-                
-                std::cout <<"\nCreating perfect tree  after " << counter << " insertions: \n";
+                displayTreeInOrder();
+				std::cout<<"\n";
+
+                std::cout <<"\nCreating perfect tree after " << counter << " insertions: \n";
                 createPerfectTree();
 
-                std::cout << "Height after DSW " << printHeight() << "\n";
+                std::cout << "Height after DSW: " << printHeight() << "\n";
                 displayTreeInOrder();
 				std::cout<<"\n";
 			
@@ -413,7 +476,8 @@ int bstdsw::printHeightHelper(bstdswNode *node){
     //if (current == NULL)
 	if (current == NULL || (current->leftChild==NULL 
 		&& current->rightChild==NULL)) { //or current = 0x01? // or current->leftC
-		return 0;
+        // This is an empty tree
+		return -1;
 	}
 	
 	      

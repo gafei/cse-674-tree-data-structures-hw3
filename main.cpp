@@ -43,12 +43,12 @@ int main(int argc, char *argv[]){
     //bstdswObj.createBackBone();
     //std::cout <<"Backbone Created: \n";
     //bstdswObj.createPrefectTree();
-    //bool removal = bstdswObj.remove(50);
-    //std::cout <<"Removal is: " << removal <<"\n";
+    bool removal = bstdswObj.remove(50);
+    std::cout <<"Removal is: " << removal <<"\n";
 
    
-    //int x = bstdswObj.printHeight();
-    //std::cout << "Height is: " << x <<"\n\n";
+    int x = bstdswObj.printHeight();
+    std::cout << "Height is: " << x <<"\n\n";
     std::cout << "Binary Search Tree In Order is:" << "\n";
     bstdswObj.displayTreeInOrder();
     std::cout <<"\n";
