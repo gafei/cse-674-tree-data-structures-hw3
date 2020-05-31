@@ -250,7 +250,7 @@ void bstdsw::createBackBoneHelper(bstdswNode *& root){
 
 
 }
-void bstdsw::createPerfectTree(){
+void bstdsw::createPerfectTree(int counter){
 /***************
     int n =0;
     bstdswNode *temp = root;
@@ -268,8 +268,10 @@ void bstdsw::createPerfectTree(){
         makeRotations(m /= 2);
     }
 ***********************/
-    int n = size ; // hardcoded for 10 for now
+    //int n = size ; // hardcoded for 10 for now
+    //int n = 10;
     //int size = 10;
+    int n = size = counter;
     int m = (1<<((int)(log10(n+1)/log10(2))))-1;
         int i;
         bstdswNode *Gr=0,*tmp;
@@ -412,8 +414,10 @@ void bstdsw::genDataS2(){
 				std::cout<<"\n";
 
                 std::cout <<"\nCreating perfect tree after " << counter << " insertions: \n";
-                createPerfectTree();
-
+                createPerfectTree(counter);
+                std::cout << "Perfect Tree "; // Perfect Tree root is
+                printRoot();
+            
                 std::cout << "Height after DSW: " << printHeight() << "\n";
                 displayTreeInOrder();
 				std::cout<<"\n";

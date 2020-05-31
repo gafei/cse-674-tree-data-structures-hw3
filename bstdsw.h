@@ -46,7 +46,7 @@ class bstdsw{
         //bstdswNode* rotateLeft(bstdswNode *& grandParent, bstdswNode *& parent, bstdswNode *& rightChild);
         void rotateLeft(bstdswNode *& grandParent);
         void createBackBone();
-        void createPerfectTree();
+        void createPerfectTree(int counter);
 
 
         void displayTreeInOrder(); 
