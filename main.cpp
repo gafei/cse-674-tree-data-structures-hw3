@@ -2,12 +2,15 @@
 #include <string>
 #include "bst.h"
 #include "bstdsw.h"
+#include "bstavl.h"
 #include <chrono>
 
 binarySearchTree binarySearchTreeObj;
 binarySearchTree binarySearchTreeObj2;
 bstdsw bstdswObj;
 bstdsw bstdswObj2;
+bstavl bstavlObj;
+bstavl bstavlObj2;
 
 int main(int argc, char *argv[]){
 
@@ -24,6 +27,8 @@ int main(int argc, char *argv[]){
     *****/
     //binarySearchTreeObj.genDataS1();
 
+// Part 1 BST 
+/**********************
     std::cout << "Start of S1 Data, numbers are in order from 1-100 into Binary Search Tree: \n";
     binarySearchTreeObj.genDataS1();
     bool removals1 = binarySearchTreeObj.remove(50);
@@ -43,25 +48,11 @@ int main(int argc, char *argv[]){
     std::cout << "After removal of 50, Binary Search Tree In Order is:" << "\n";
     binarySearchTreeObj2.displayTreeInOrder();
     std::cout <<"\n\n";
-
-
-/***********
-
-    binarySearchTreeObj.genDataS2();
-    bool removal = binarySearchTreeObj.remove(50);
-    std::cout <<"Removal is: " << removal <<"\n";
-   
-    int x = binarySearchTreeObj.printHeight();
-    std::cout << "Height is: " << x <<"\n\n";
-    std::cout << "Binary Search Tree In Order is:" << "\n";
-    binarySearchTreeObj.displayTreeInOrder();
-    std::cout <<"\n";
-
-*************/
+*********************/
 // Part 2 DSW Algorithm
    
    // genDataS1, generates numbers in order 1-100.
-    /*************************
+/***************    
     std::cout << "Start of S1 Data, numbers are in order from 1-100 into BST: \n";
     bstdswObj.genDataS1();
     bool removal1 = bstdswObj.remove(50);
@@ -85,7 +76,7 @@ int main(int argc, char *argv[]){
     std::cout << "After removal of 50, Binary Search Tree In Order is:" << "\n";
     bstdswObj2.displayTreeInOrder();
     std::cout <<"\n";
-****************************/
+************************/
     return 0;
 
 }
