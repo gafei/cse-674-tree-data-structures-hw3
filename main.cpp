@@ -77,6 +77,49 @@ int main(int argc, char *argv[]){
     bstdswObj2.displayTreeInOrder();
     std::cout <<"\n";
 ************************/
+
+
+// Part 3 AVL Tree
+    /********
+    bstavlNode *top = NULL;
+
+    top = bstavlObj.insert(top, 10);
+    top = bstavlObj.insert(top, 20);
+    top = bstavlObj.insert(top, 30);
+    top = bstavlObj.insert(top, 40);
+    top = bstavlObj.insert(top, 50);
+    top = bstavlObj.insert(top, 25);
+
+    bstavlObj.displayTreePreOrder();
+
+    ***************/
+    std::cout << "Start of S1 Data, numbers are in order from 1-100 into AVL BST: \n";
+    bstavlObj.genDataS1();
+    bool removalavl1 = bstavlObj.remove(50);
+    std::cout <<"Removal of 50 is: " << removalavl1 <<"\n";
+    
+    int xavl1 = bstavlObj.printActualHeight();
+    std::cout << "After removal of 50, Height is: " << xavl1 <<"\n\n";
+    std::cout << "After removal of 50, Binary Search Tree In Order is:" << "\n";
+    bstavlObj.displayTreeInOrder();
+    std::cout <<"\n\n\n";
+
+    std::cout << "Start of S2 Data, random data from 1-100 into AVL BST: \n";
+    bstavlObj2.genDataS2();
+    bool removalavl2 = bstavlObj2.remove(50);
+    std::cout <<"Removal of 50 is: " << removalavl1 <<"\n";
+    
+    int xavl2 = bstavlObj2.printActualHeight();
+    std::cout << "After removal of 50, Height is: " << xavl2 <<"\n\n";
+    std::cout << "After removal of 50, Binary Search Tree In Order is:" << "\n";
+    bstavlObj2.displayTreeInOrder();
+    std::cout <<"\n\n\n";
+
+
+
+
+
+
     return 0;
 
 }
