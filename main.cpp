@@ -107,7 +107,7 @@ int main(int argc, char *argv[]){
     std::cout << "Start of S2 Data, random data from 1-100 into AVL BST: \n";
     bstavlObj2.genDataS2();
     bool removalavl2 = bstavlObj2.remove(50);
-    std::cout <<"Removal of 50 is: " << removalavl1 <<"\n";
+    std::cout <<"Removal of 50 is: " << removalavl2 <<"\n";
     
     int xavl2 = bstavlObj2.printActualHeight();
     std::cout << "After removal of 50, Height is: " << xavl2 <<"\n\n";
