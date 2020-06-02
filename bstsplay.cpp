@@ -139,8 +139,11 @@ bstSplayNode* bstSplay::insert(bstSplayNode *root, int key){
 
 
  }
- bstSplayNode* bstSplay::remove(bstSplayNode* root, int key) 
+ bstSplayNode* bstSplay::remove(int key) 
 { 
+
+    bstSplayNode *root = this->root;
+
     bstSplayNode*temp; 
     if (!root) 
         return NULL; 
@@ -184,6 +187,7 @@ bstSplayNode* bstSplay::insert(bstSplayNode *root, int key){
     free(temp); 
       
     // return root of the new Splay Tree 
+    this->root = root; // update root to be the new root.
     return root; 
       
 } 

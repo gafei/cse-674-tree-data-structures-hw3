@@ -20,8 +20,9 @@ class bstSplay{
         bstSplayNode* splay(bstSplayNode * root, int key);
 
         bstSplayNode* insert(bstSplayNode *root, int key);
-        bstSplayNode* remove(bstSplayNode* root, int key); 
-        
+        //bstSplayNode* remove(bstSplayNode* root, int key); 
+        bstSplayNode* remove(int key); 
+
         //bool remove(int key);
         //void searchKey(bstSplayNode* &curr, int key, bstSplayNode* &parent);
         //bstSplayNode* minimumKey(bstSplayNode* curr);
