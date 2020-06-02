@@ -4,13 +4,15 @@
 #include <chrono>
 #include <random>
 #include "bstdsw.h"
-
+/****
 bstdsw::bstdsw(){
 
     root=NULL;
 
 
 }
+*****/
+
 bstdsw::~bstdsw(){
 
     //destrutor
@@ -179,6 +181,7 @@ bstdswNode* bstdsw::rotateRight(bstdswNode *& grandParent, bstdswNode *& parent,
 
 
 }
+/********
 bstdswNode* bstdsw::rotateLeft(bstdswNode *& grandParent, bstdswNode *& parent, bstdswNode *& rightChild){
 
     if(grandParent != NULL){
@@ -191,6 +194,32 @@ bstdswNode* bstdsw::rotateLeft(bstdswNode *& grandParent, bstdswNode *& parent, 
     rightChild->leftChild = parent;
 
     return grandParent;
+
+
+}
+**************/
+bstdswNode* bstdsw::rotateLeft(bstdswNode *& inputNode){
+/*******
+        if(!grandParent) return;
+        bstdswNode *par = grandParent->rightChild;
+        if(!par)return;
+        bstdswNode *ch  = par->rightChild;
+        grandParent->rightChild=par->leftChild;
+        par->leftChild=grandParent;
+        grandParent = par;
+		***************/
+
+   bstdswNode *right, *rightLeft;
+
+   if ((inputNode == NULL) ||(inputNode->rightChild == NULL)) return inputNode;
+   
+   right = inputNode->rightChild;
+   rightLeft = right->leftChild;
+   right->leftChild = inputNode; 
+   inputNode->rightChild = rightLeft;
+   
+   return right;
+
 
 
 }
@@ -223,6 +252,11 @@ void bstdsw::createBackBoneHelper(bstdswNode *& root){
 
 
         }
+        //special case
+        if(grandParent == NULL){
+            root = leftChild;
+
+        }
 
     }
 
@@ -230,8 +264,8 @@ void bstdsw::createBackBoneHelper(bstdswNode *& root){
 
 
 }
-void bstdsw::createPerfectTree(){
-
+void bstdsw::createPerfectTree(bstdswNode *&inputNode){
+/***************
     int n =0;
     bstdswNode *temp = root;
     
@@ -240,26 +274,98 @@ void bstdsw::createPerfectTree(){
         n++; // counts nodes
 
     }
-    //m = 2^floor[lg(n+1)]-1, ie the greatest power of 2 less than n: minus 1
+    //m = 2^floor[lg(n+1)]-1, ie the greavoid displayTreePreOrder(); test power of 2 less than n: minus 1
     int m = greatestPowerOf2LessThanN(n + 1) - 1;
     makeRotations(n - m);
     
     while (m > 1) {
         makeRotations(m /= 2);
     }
+***********************/
+    //int n = size ; // hardcoded for 10 for now
+    //int n = 10;
+    //int size = 10;
+	/***********************
+    int n = size = counter;
+    int m = (1<<((int)(log10(n+1)/log10(2))))-1;
+        int i;
+        bstdswNode *Gr=0,*tmp;
+        if(size<3)return;printf("%d\n",m);
+        for(i=0,Gr=root;i<n-m;i++){
+            if(i==0){
+    
+                Gr = Gr->rightChild;
+                rotateLeft(root);  
+            }else if(Gr&&Gr->rightChild){
+                
+                tmp = Gr->rightChild->rightChild;
+                rotateLeft(Gr->rightChild);
+                Gr = tmp;
+            }
+        }
+        while(m>1){
+            m = m/2;
+            for(i=0,Gr=root;i<m;i++){
+                if(i==0){
+                    Gr = Gr->rightChild;
+                    rotateLeft(root);
+                }else if(Gr&&Gr->rightChild){
+                    tmp = Gr->rightChild->rightChild;
+                    rotateLeft(Gr->rightChild);
+                    Gr = tmp;
+                }
+            }
+        }
+
+
+****************************/
+
+    int height, t, l, lc;
+
+   /* n is the number of nodes in the original tree */
+   height = printHeight();
+
+   /* Compute l = log2(n+1) */
+   t = height + 1; 
+   l = 0;
+   while (t > 1) { 
+	   ++l; 
+	   t /= 2; 
+	   }
+
+   /* Create the deepest leaves */
+   lc = height + 1 - (1 << l); if (lc == 0) lc = (1 << (l - 1));
+   inputNode = compress(inputNode,lc);
+
+   height -= lc;
+   while (height > 1) { /* Sequence of left rotations */
+      height /= 2;
+      inputNode = compress(inputNode,height);
+   }
+
+   //return T;
 
 }
+bstdswNode * bstdsw::compress(bstdswNode *inputNode, int count){
 
+	bstdswNode *temp;
+	temp = inputNode;
+	
+	while (count) {
+		temp->rightChild = rotateLeft(temp->rightChild);
+		temp = temp->rightChild;
+		--count;
+	}
+
+   return inputNode;
+}
+
+/***************************
 int bstdsw::greatestPowerOf2LessThanN(int n) {
   int x = MSB(n);//MSB
   return (1 << x);//2^x
 }
- 
-/**
- * Time complexity: log(n)
- * return the index of most significant set bit: index of
- * least significant bit is 0
- */
+
 int bstdsw::MSB(int n) {
   int ndx = 0;
   while (1 < n) {
@@ -276,10 +382,16 @@ void bstdsw::makeRotations(int bound) {
   
   for (; bound > 0; bound--) {
       if (child != NULL) {
-        rotateLeft(grandParent, parent, child);
+       // rotateLeft(grandParent, parent, child);
         grandParent = child;
         parent = grandParent->rightChild;
-        child = parent->rightChild;
+        if(grandParent->rightChild){
+            child = parent->rightChild;
+        }
+        else{
+            std::cout <<"No grandparent with a rightchild\n";
+            break; }
+        
       } 
       else {
           std::cout << "Couldn't perform rotations\n";
@@ -288,7 +400,7 @@ void bstdsw::makeRotations(int bound) {
     }
 }
  
-
+************************************/
 
 
 
@@ -298,7 +410,7 @@ void bstdsw::genDataS1(){
 		insert(i);
 
 			if(i % 10 == 0 && i!=0){
-			
+			/********
 			std::cout<<"\n";
 			std::cout <<"Height after " << i << " insertions: " << printHeight() <<"\n";
 			std::cout <<"Tree structure after " << i << " insertions \n";
@@ -309,6 +421,48 @@ void bstdsw::genDataS1(){
             std::cout << printHeight() << "\n";
 
 			std::cout<<"\n";
+
+			***********/
+				std::cout<<"\n";
+                std::cout <<"Initial "; // Original root is:
+                printRoot();
+				
+				std::cout <<"Initial BST: \n";
+				std::cout <<"Tree structure Pre Order after " << i << " insertions \n";
+				displayTreePreOrder();
+				std::cout <<"\nTree structure In Order after " << i << " insertions \n";
+				displayTreeInOrder();
+				std::cout <<"\nInitial BST Height after " << i << " insertions: " << printHeight() <<"\n";
+
+				std::cout <<"\n\nRight Degnerate Tree: \n";
+                std::cout <<"Creating backbone after " << i << " insertions: \n";
+                createBackBone(); // should only have right children and NO left children, asecnding order.
+                std::cout << "New "; // New root is
+                printRoot();
+				std::cout <<"Backbone Tree structure Pre Order after " << i << " insertions \n";
+				displayTreePreOrder();
+				std::cout <<"\nBackbone Tree structure In Order after " << i << " insertions \n";
+                displayTreeInOrder();
+				std::cout <<"\nBackbone Height after " << i << " insertions: " << printHeight() <<"\n";
+				//std::cout<<"\n\n";
+
+				std::cout <<"\n\nBalanced Tree: \n";
+                std::cout <<"Creating perfect tree after " << i << " insertions: \n";
+                createPerfectTree(root);
+                std::cout << "Perfect Tree "; // Perfect Tree root is
+                printRoot();
+            
+                //std::cout << "Height after DSW: " << printHeight() << "\n";
+
+				std::cout <<"Balanced Tree structure Pre Order after " << i << " insertions \n";
+				displayTreePreOrder();
+				std::cout <<"\nBalanced Tree structure In Order after " << i << " insertions \n";
+                displayTreeInOrder();
+				std::cout <<"\nBalanced Tree Height after " << i << " insertions: " << printHeight() <<"\n";
+               
+			   std::cout<<"\n\n";
+
+
 
 		}
 
@@ -336,24 +490,45 @@ void bstdsw::genDataS2(){
 		
 			if(counter % 10 == 0 ){ //&& i!=0
 				std::cout<<"\n";
-                std::cout <<"Original "; // Original root is:
+                std::cout <<"Initial "; // Original root is:
                 printRoot();
-
-				std::cout <<"Height after " << counter << " insertions: " << printHeight() <<"\n";
-				std::cout <<"Tree structure after " << counter << " insertions \n";
+				
+				std::cout <<"Initial BST: \n";
+				std::cout <<"Tree structure Pre Order after " << counter << " insertions \n";
+				displayTreePreOrder();
+				std::cout <<"\nTree structure In Order after " << counter << " insertions \n";
 				displayTreeInOrder();
+				std::cout <<"\nInitial BST Height after " << counter << " insertions: " << printHeight() <<"\n";
 
-                std::cout <<"\nCreating backbone after " << counter << " insertions: \n";
+				std::cout <<"\n\nRight Degnerate Tree: \n";
+                std::cout <<"Creating backbone after " << counter << " insertions: \n";
                 createBackBone(); // should only have right children and NO left children, asecnding order.
                 std::cout << "New "; // New root is
                 printRoot();
-                
-                std::cout <<"\nCreating perfect tree  after " << counter << " insertions: \n";
-                createPerfectTree();
-
-                std::cout << "Height after DSW " << printHeight() << "\n";
+				std::cout <<"Backbone Tree structure Pre Order after " << counter << " insertions \n";
+				displayTreePreOrder();
+				std::cout <<"\nBackbone Tree structure In Order after " << counter << " insertions \n";
                 displayTreeInOrder();
-				std::cout<<"\n";
+				std::cout <<"\nBackbone Height after " << counter << " insertions: " << printHeight() <<"\n";
+				//std::cout<<"\n\n";
+
+				std::cout <<"\n\nBalanced Tree: \n";
+                std::cout <<"Creating perfect tree after " << counter << " insertions: \n";
+                createPerfectTree(root);
+                std::cout << "Perfect Tree "; // Perfect Tree root is
+                printRoot();
+            
+                //std::cout << "Height after DSW: " << printHeight() << "\n";
+
+				std::cout <<"Balanced Tree structure Pre Order after " << counter << " insertions \n";
+				displayTreePreOrder();
+				std::cout <<"\nBalanced Tree structure In Order after " << counter << " insertions \n";
+                displayTreeInOrder();
+				std::cout <<"\nBalanced Tree Height after " << counter << " insertions: " << printHeight() <<"\n";
+               
+			   std::cout<<"\n\n";
+			   // displayTreeInOrder();
+				//std::cout<<"\n";
 			
 			}
 
@@ -366,10 +541,10 @@ void bstdsw::genDataS2(){
 
 void bstdsw::displayTreeInOrder(){
 
-    displayTreeHelperInOrder(root);
+    displayTreeInOrderHelper(root);
 
 }
-void bstdsw::displayTreeHelperInOrder(bstdswNode *current){
+void bstdsw::displayTreeInOrderHelper(bstdswNode *current){
 
     		//bstNode currentNode = current;
         
@@ -378,7 +553,7 @@ void bstdsw::displayTreeHelperInOrder(bstdswNode *current){
 				if(current->leftChild !=NULL) { // if left one is pointing to something
 					
 					//recursively call displaytreehelperinorder
-					displayTreeHelperInOrder(current->leftChild);
+					displayTreeInOrderHelper(current->leftChild);
 				}
 			
 				//print contents of node
@@ -394,7 +569,7 @@ void bstdsw::displayTreeHelperInOrder(bstdswNode *current){
 				if(current->rightChild!=NULL) {
 					
 					//recursively call displaytreehelperinorder
-					displayTreeHelperInOrder(current->rightChild);
+					displayTreeInOrderHelper(current->rightChild);
 					
 				}
 			
@@ -406,28 +581,53 @@ void bstdsw::displayTreeHelperInOrder(bstdswNode *current){
 		
 
 }
+void bstdsw::displayTreePreOrderHelper(bstdswNode *node){
+
+	bstdswNode *current = node;
+
+	if(node!=NULL){
+
+		std::cout << current->key <<", ";
+		displayTreePreOrderHelper(current->leftChild);
+		displayTreePreOrderHelper(current->rightChild);
+
+	}
+
+}
+void bstdsw::displayTreePreOrder(){
+	
+		displayTreePreOrderHelper(root);
+}
+
+
+
 int bstdsw::printHeightHelper(bstdswNode *node){
 
 	bstdswNode *current = node;
 
     //if (current == NULL)
-	if (current == NULL || (current->leftChild==NULL 
-		&& current->rightChild==NULL)) { //or current = 0x01? // or current->leftC
-		return 0;
+	//if (current == NULL || (current->leftChild==NULL 
+	//	&& current->rightChild==NULL)) { //or current = 0x01? // or current->leftC
+        if (current == NULL){
+		// This is an empty tree
+		return -1;
+	
 	}
 	
 	      
     else
     {  
-        /* compute the depth of each subtree */
-
-        int lDepth = printHeightHelper(current->leftChild);  
-        int rDepth = printHeightHelper(current->rightChild);  
+       
+        int leftHeight = printHeightHelper(current->leftChild);  
+        int rightHeight = printHeightHelper(current->rightChild);  
       
-        /* use the larger one */
-        if (lDepth > rDepth)  
-            return(lDepth + 1);  
-        else return(rDepth + 1); 
+	if(leftHeight > rightHeight){
+		return (leftHeight + 1);
+	}else{
+		return (rightHeight +1);
+	}
+
+
     }
 
 }
