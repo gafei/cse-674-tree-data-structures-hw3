@@ -3,6 +3,7 @@
 #include "bst.h"
 #include "bstdsw.h"
 #include "bstavl.h"
+#include "bstsplay.h"
 #include <chrono>
 
 binarySearchTree binarySearchTreeObj;
@@ -11,6 +12,8 @@ bstdsw bstdswObj;
 bstdsw bstdswObj2;
 bstavl bstavlObj;
 bstavl bstavlObj2;
+bstSplay bstSplayObj;
+bstSplay bstSplayObj2;
 
 int main(int argc, char *argv[]){
 
