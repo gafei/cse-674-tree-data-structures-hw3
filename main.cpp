@@ -31,7 +31,7 @@ int main(int argc, char *argv[]){
     //binarySearchTreeObj.genDataS1();
 
 // Part 1 BST 
-/**********************
+
     std::cout << "Start of S1 Data, numbers are in order from 1-100 into Binary Search Tree: \n";
     binarySearchTreeObj.genDataS1();
     bool removals1 = binarySearchTreeObj.remove(50);
@@ -51,11 +51,11 @@ int main(int argc, char *argv[]){
     std::cout << "After removal of 50, Binary Search Tree In Order is:" << "\n";
     binarySearchTreeObj2.displayTreeInOrder();
     std::cout <<"\n\n";
-*********************/
+
 // Part 2 DSW Algorithm
    
    // genDataS1, generates numbers in order 1-100.
-/***************    
+ 
     std::cout << "Start of S1 Data, numbers are in order from 1-100 into BST: \n";
     bstdswObj.genDataS1();
     bool removal1 = bstdswObj.remove(50);
@@ -79,7 +79,7 @@ int main(int argc, char *argv[]){
     std::cout << "After removal of 50, Binary Search Tree In Order is:" << "\n";
     bstdswObj2.displayTreeInOrder();
     std::cout <<"\n";
-************************/
+
 
 
 // Part 3 AVL Tree
@@ -97,7 +97,7 @@ int main(int argc, char *argv[]){
 
     ***************/
 
-   /*******************
+  
     std::cout << "Start of S1 Data, numbers are in order from 1-100 into AVL BST: \n";
     bstavlObj.genDataS1();
     bool removalavl1 = bstavlObj.remove(50);
@@ -119,7 +119,7 @@ int main(int argc, char *argv[]){
     std::cout << "After removal of 50, Binary Search Tree In Order is:" << "\n";
     bstavlObj2.displayTreeInOrder();
     std::cout <<"\n\n\n";
-    **************************/
+  
 // Part 4 Splay Tree
     std::cout << "Start of S1 Data, numbers are in order from 1-100 into Splay BST: \n";
     bstSplayObj.genDataS1();
