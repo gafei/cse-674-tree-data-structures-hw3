@@ -139,6 +139,15 @@ bstSplayNode* bstSplay::insert(bstSplayNode *root, int key){
 
 
  }
+bstSplayNode* bstSplay::search(int key){
+    
+    bstSplayNode *root = this->root;
+    this->root = splay(root, key);
+    return (this->root);
+    
+    //return (splay(root, key)); // this key will be moved to root    
+
+}
  bstSplayNode* bstSplay::remove(int key) 
 { 
 

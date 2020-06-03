@@ -20,6 +20,8 @@ class bstSplay{
         bstSplayNode* splay(bstSplayNode * root, int key);
 
         bstSplayNode* insert(bstSplayNode *root, int key);
+        bstSplayNode* search(bstSplayNode *root, int key);
+        bstSplayNode* search(int key);
         //bstSplayNode* remove(bstSplayNode* root, int key); 
         bstSplayNode* remove(int key); 
 
