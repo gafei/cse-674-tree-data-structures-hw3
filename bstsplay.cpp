@@ -145,7 +145,6 @@ bstSplayNode* bstSplay::search(int key){
     this->root = splay(root, key);
     return (this->root);
     
-    //return (splay(root, key)); // this key will be moved to root    
 
 }
  bstSplayNode* bstSplay::remove(int key) 

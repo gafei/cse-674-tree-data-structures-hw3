@@ -164,149 +164,6 @@ bstNode* binarySearchTree::minimumKey(bstNode* curr)
 	return curr;
 }
 
-
-/*******************
-bool binarySearchTree::remove(int key){
-
-		// 3 main steps in here
-		
-		bstNode *currentNode = root;
-		bstNode *parentNode = root; // parent of 'currentNode'
-		
-		bool isLeftChild = false; //flag to determine if it's a left or right child
-		
-		// Searching to find the node with the key to delete
-		while(currentNode->key !=key) {
-			
-			//assign parentnode to currentnode
-			
-			parentNode = currentNode;
-			
-			if(key < currentNode->key) {
-				
-				isLeftChild = true;
-				currentNode = currentNode->leftChild; //keep searching  
-				
-			}else{
-				
-				currentNode = currentNode->rightChild; // this is a right child 
-				isLeftChild = false;
-				
-			}
-			
-			if(currentNode == NULL) {
-				return false;
-			}
-			
-			
-		}
-		
-		// found the node that you want to delete
-		
-		
-		// make nodetoDelete 'currentnode'. Since currentnode was used to 
-		// traverse through the array, we're giving it a new node name now
-		
-		bstNode *nodetoDelete = currentNode; 
-		
-		// check if node is a leaf node (node with no children)
-		// assign parent's child attribute to null;
-		
-		if(nodetoDelete->leftChild == NULL && nodetoDelete->rightChild == NULL)
-		{
-			// that means there's no children here.
-			// change the child reference to be a node
-			
-			if(nodetoDelete == root) {
-				
-				root = NULL;
-			}
-			
-			else if(isLeftChild) {
-				parentNode->leftChild = NULL;
-				
-			}
-			else {
-				parentNode->rightChild = NULL;
-			}
-			
-			
-		} // if node has one child that is on the left
-		else if(nodetoDelete->rightChild == NULL) {
-			
-			if(nodetoDelete ==root) {
-				root = nodetoDelete->leftChild;
-			}
-			else if (isLeftChild) {
-				parentNode->leftChild = nodetoDelete->leftChild;
-			}
-			else {
-				parentNode->rightChild = nodetoDelete->leftChild;
-			}
-			
-		}
-		// if node has one child that is on the right
-		else if(nodetoDelete->leftChild == NULL) {
-			
-			if(nodetoDelete ==root) {
-				root = nodetoDelete->rightChild;
-			}
-			else if (isLeftChild) {
-				parentNode->leftChild = nodetoDelete->rightChild;
-			}
-			else {
-				parentNode->rightChild = nodetoDelete->rightChild;
-			}
-		
-		}
-		
-		
-		// check if node is a child (at least one)
-		// copy the subtree to the leading node's position
-		
-		// check if node has two children
-		
-		else {
-			
-			// find the smallest of the set of nodes
-			// that are larger/replace the number you're deleting
-			
-			// get successor of the node
-			
-			
-			// sucessor is the min value out of the set of values
-			// that is LARGER than the node that we're trying to delete
-			bstNode successor = getSuccessor(nodetoDelete);
-			
-			// find min value to delete
-			// connect parent of the nodetodelete with the sucessor instead
-			
-			if(nodetoDelete == root) {
-				
-				root = &successor;
-				
-			}else if(isLeftChild){
-				
-				parentNode->leftChild = &successor;
-			}
-			else {
-				
-				parentNode->rightChild = &successor;
-			}
-			
-			successor.leftChild = nodetoDelete->leftChild;
-			
-		}
-		//free your pointer
-		free(currentNode);
-		//free(nodetoDelete);
-		//free(parentNode);
-		return true; // if able to delete
-
-
-
-}
-**************/
 void binarySearchTree::displayTreeInOrder(){
 
     displayTreeHelperInOrder(root);
@@ -375,13 +232,6 @@ void binarySearchTree::genDataS1(){
 		insert(i);
 
 			if(i % 10 == 0 && i!=0){
-			/********
-			std::cout<<"\n";
-			std::cout <<"Height after " << i << " insertions: " << printHeight() <<"\n";
-			std::cout <<"Tree structure in order after " << i << " insertions \n";
-			displayTreeInOrder();
-			std::cout<<"\n";
-			************/
 
 			std::cout <<"Tree structure Pre Order after " << i << " insertions \n";
 			displayTreePreOrder();
@@ -417,14 +267,6 @@ void binarySearchTree::genDataS2(){
 		
 			if(counter % 10 == 0 ){ //&& i!=0
 
-			/********
-				std::cout<<"\n";
-				std::cout <<"Height after " << counter << " insertions: " << printHeight() <<"\n";
-				std::cout <<"Tree structure after " << counter << " insertions \n";
-				displayTreeInOrder();
-				std::cout<<"\n";
-			*****************/
-
 			std::cout <<"Tree structure Pre Order after " << counter << " insertions \n";
 			displayTreePreOrder();
 			std::cout <<"\nTree structure In Order after " << counter << " insertions \n";
@@ -445,9 +287,6 @@ int binarySearchTree::printHeightHelper(bstNode *node){
 
 	bstNode *current = node;
 
-    //if (current == NULL)
-	//if (current == NULL || (current->leftChild==NULL 
-	//	&& current->rightChild==NULL)) { //or current = 0x01? // or current->leftC
         if (current == NULL){
 		// This is an empty tree
 		return -1;
@@ -477,6 +316,7 @@ int binarySearchTree::printHeight(){
 	return (printHeightHelper(root));
 
 }
+/******
 bstNode & binarySearchTree::getSuccessor(bstNode *nodetoDelete){
 		
 		bstNode *successorParent = nodetoDelete;
@@ -503,16 +343,6 @@ bstNode & binarySearchTree::getSuccessor(bstNode *nodetoDelete){
 }
 
 
-void binarySearchTree::binaryInsert(int key){
-
-
-
-
-}
-
-bool binarySearchTree::binaryRemove(int key){
-
-}
 int binarySearchTree::binarySearch(std::vector<int> &inputVector, int x){
 
 	int p = 0; //this is the first number in the vector
@@ -575,3 +405,4 @@ int binarySearchTree::recursivebinarySearch(std::vector<int> &inputVector, int s
 
 
 }
+********/

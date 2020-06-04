@@ -91,7 +91,6 @@ int bstavl::getBalance(bstavlNode *inputNode){
 }
 
 bstavlNode* bstavl::insert(bstavlNode *node, int key){
-//bstavlNode* bstavl::insert(int key){
     // this is a recursive implementation
 
     //bstavlNode *node;
@@ -107,11 +106,11 @@ bstavlNode* bstavl::insert(bstavlNode *node, int key){
     else // Equal keys are not allowed in BST  
         return node;  
   
-    /* 2. Update height of this ancestor node */
+    /* Update height of this ancestor node */
     node->height = 1 + getMax(printHeight(node->leftChild),  
                         printHeight(node->rightChild));  
   
-    /* 3. Get the balance factor of this ancestor  
+    /* Get the balance factor of this ancestor  
         node to check whether this node became  
         unbalanced */
     int balance = getBalance(node);  
@@ -130,7 +129,7 @@ bstavlNode* bstavl::insert(bstavlNode *node, int key){
     // Left Right Case  
     if (balance > 1 && key > node->leftChild->key)  
     {  
-        node->leftChild = rotateRight(node->leftChild);  
+        node->leftChild = rotateLeft(node->leftChild);  
         return rotateRight(node);  
     }  
   
