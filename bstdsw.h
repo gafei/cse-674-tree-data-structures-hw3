@@ -63,9 +63,6 @@ class bstdsw{
 
         int size;
         void createBackBoneHelper(bstdswNode *& root);
-       // int greatestPowerOf2LessThanN(int n);
-       // int MSB(int n);
-       // void makeRotations(int bound);
 
         void displayTreeInOrderHelper(bstdswNode *current);
         void displayTreePreOrderHelper(bstdswNode *current); 
@@ -73,12 +70,6 @@ class bstdsw{
 
         bstdswNode & getSuccessor(bstdswNode *nodetoDelete);
         
-
-
-        //void displayTreeHelperInOrder(bstNode *current);
-       // int printHeightHelper(bstNode *node);
-
-       // bstNode & getSuccessor(bstNode *nodetoDelete);
 
 
 };

@@ -17,21 +17,9 @@ bstSplay bstSplayObj2;
 
 int main(int argc, char *argv[]){
 
-    /******
-    binarySearchTreeObj.insert(8);
-    binarySearchTreeObj.insert(12);    
-    binarySearchTreeObj.insert(5);
-    binarySearchTreeObj.insert(4);
-
-    binarySearchTreeObj.insert(2);
-    binarySearchTreeObj.insert(15);
-    //binarySearchTreeObj.insert(5);
-    //binarySearchTreeObj.insert(7);
-    *****/
-    //binarySearchTreeObj.genDataS1();
-
 // Part 1 BST 
-/**********************
+
+    std::cout <<"Binary Search Tree: \n";
     std::cout << "Start of S1 Data, numbers are in order from 1-100 into Binary Search Tree: \n";
     binarySearchTreeObj.genDataS1();
     bool removals1 = binarySearchTreeObj.remove(50);
@@ -51,11 +39,11 @@ int main(int argc, char *argv[]){
     std::cout << "After removal of 50, Binary Search Tree In Order is:" << "\n";
     binarySearchTreeObj2.displayTreeInOrder();
     std::cout <<"\n\n";
-*********************/
+
 // Part 2 DSW Algorithm
    
    // genDataS1, generates numbers in order 1-100.
-/***************    
+    std::cout <<"Start of DST Algorithm \n";
     std::cout << "Start of S1 Data, numbers are in order from 1-100 into BST: \n";
     bstdswObj.genDataS1();
     bool removal1 = bstdswObj.remove(50);
@@ -70,7 +58,7 @@ int main(int argc, char *argv[]){
    
     std::cout << "Start of S2 Data, random data from 1-100 into the BST: \n";
     bstdswObj2.genDataS2(); 
-    bool removal2 = bstdswObj.remove(50);
+    bool removal2 = bstdswObj2.remove(50);
     std::cout <<"Removal is: " << removal2 <<"\n";
 
    
@@ -79,25 +67,11 @@ int main(int argc, char *argv[]){
     std::cout << "After removal of 50, Binary Search Tree In Order is:" << "\n";
     bstdswObj2.displayTreeInOrder();
     std::cout <<"\n";
-************************/
+
 
 
 // Part 3 AVL Tree
-    /********
-    bstavlNode *top = NULL;
 
-    top = bstavlObj.insert(top, 10);
-    top = bstavlObj.insert(top, 20);
-    top = bstavlObj.insert(top, 30);
-    top = bstavlObj.insert(top, 40);
-    top = bstavlObj.insert(top, 50);
-    top = bstavlObj.insert(top, 25);
-
-    bstavlObj.displayTreePreOrder();
-
-    ***************/
-
-   /*******************
     std::cout << "Start of S1 Data, numbers are in order from 1-100 into AVL BST: \n";
     bstavlObj.genDataS1();
     bool removalavl1 = bstavlObj.remove(50);
@@ -119,27 +93,30 @@ int main(int argc, char *argv[]){
     std::cout << "After removal of 50, Binary Search Tree In Order is:" << "\n";
     bstavlObj2.displayTreeInOrder();
     std::cout <<"\n\n\n";
-    **************************/
+  
 // Part 4 Splay Tree
+
     std::cout << "Start of S1 Data, numbers are in order from 1-100 into Splay BST: \n";
     bstSplayObj.genDataS1();
-    bstSplayObj.remove(50);
-    //std::cout <<"Removal of 50 is: " << removalsplay1 <<"\n";
+    bstSplayObj.search(50);
+    std::cout <<"After search of 50, Splay Binary Search Tree Pre order is: " << "\n";
+    bstSplayObj.displayTreePreOrder();
     
     int xsplay1 = bstSplayObj.printHeight();
-    std::cout << "After removal of 50, Height is: " << xsplay1 <<"\n\n";
-    std::cout << "After removal of 50, Binary Search Tree In Order is:" << "\n";
+    std::cout << "\nAfter search of 50, Height is: " << xsplay1 <<"\n\n";
+    std::cout << "After search of 50, Splay Binary Search Tree In Order is:" << "\n";
     bstSplayObj.displayTreeInOrder();
     std::cout <<"\n\n\n";
 
     std::cout << "Start of S2 Data, random data from 1-100 into Splay BST: \n";
     bstSplayObj2.genDataS2();
-    bstSplayObj2.remove(50);
-    //std::cout <<"Removal of 50 is: " << removalsplay2 <<"\n";
+    bstSplayObj2.search(50);
+    std::cout <<"After search of 50, Splay Binary Search Tree Pre order is: " << "\n";
+    bstSplayObj.displayTreePreOrder();
     
     int xsplay2 = bstSplayObj2.printHeight();
-    std::cout << "After removal of 50, Height is: " << xsplay2 <<"\n\n";
-    std::cout << "After removal of 50, Binary Search Tree In Order is:" << "\n";
+    std::cout << "\nAfter search of 50, Height is: " << xsplay2 <<"\n\n";
+    std::cout << "After search of 50, Binary Search Tree In Order is:" << "\n";
     bstSplayObj2.displayTreeInOrder();
     std::cout <<"\n\n\n";
 

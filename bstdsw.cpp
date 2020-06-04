@@ -181,33 +181,8 @@ bstdswNode* bstdsw::rotateRight(bstdswNode *& grandParent, bstdswNode *& parent,
 
 
 }
-/********
-bstdswNode* bstdsw::rotateLeft(bstdswNode *& grandParent, bstdswNode *& parent, bstdswNode *& rightChild){
 
-    if(grandParent != NULL){
-        grandParent->rightChild = rightChild;
-    }
-    else{
-        root = rightChild;
-    }
-    parent->rightChild = rightChild->leftChild;
-    rightChild->leftChild = parent;
-
-    return grandParent;
-
-
-}
-**************/
 bstdswNode* bstdsw::rotateLeft(bstdswNode *& inputNode){
-/*******
-        if(!grandParent) return;
-        bstdswNode *par = grandParent->rightChild;
-        if(!par)return;
-        bstdswNode *ch  = par->rightChild;
-        grandParent->rightChild=par->leftChild;
-        par->leftChild=grandParent;
-        grandParent = par;
-		***************/
 
    bstdswNode *right, *rightLeft;
 
@@ -265,60 +240,6 @@ void bstdsw::createBackBoneHelper(bstdswNode *& root){
 
 }
 void bstdsw::createPerfectTree(bstdswNode *&inputNode){
-/***************
-    int n =0;
-    bstdswNode *temp = root;
-    
-    for (temp; temp!=NULL; temp = temp->rightChild){
-
-        n++; // counts nodes
-
-    }
-    //m = 2^floor[lg(n+1)]-1, ie the greavoid displayTreePreOrder(); test power of 2 less than n: minus 1
-    int m = greatestPowerOf2LessThanN(n + 1) - 1;
-    makeRotations(n - m);
-    
-    while (m > 1) {
-        makeRotations(m /= 2);
-    }
-***********************/
-    //int n = size ; // hardcoded for 10 for now
-    //int n = 10;
-    //int size = 10;
-	/***********************
-    int n = size = counter;
-    int m = (1<<((int)(log10(n+1)/log10(2))))-1;
-        int i;
-        bstdswNode *Gr=0,*tmp;
-        if(size<3)return;printf("%d\n",m);
-        for(i=0,Gr=root;i<n-m;i++){
-            if(i==0){
-    
-                Gr = Gr->rightChild;
-                rotateLeft(root);  
-            }else if(Gr&&Gr->rightChild){
-                
-                tmp = Gr->rightChild->rightChild;
-                rotateLeft(Gr->rightChild);
-                Gr = tmp;
-            }
-        }
-        while(m>1){
-            m = m/2;
-            for(i=0,Gr=root;i<m;i++){
-                if(i==0){
-                    Gr = Gr->rightChild;
-                    rotateLeft(root);
-                }else if(Gr&&Gr->rightChild){
-                    tmp = Gr->rightChild->rightChild;
-                    rotateLeft(Gr->rightChild);
-                    Gr = tmp;
-                }
-            }
-        }
-
-
-****************************/
 
     int height, t, l, lc;
 
@@ -330,20 +251,19 @@ void bstdsw::createPerfectTree(bstdswNode *&inputNode){
    l = 0;
    while (t > 1) { 
 	   ++l; 
-	   t /= 2; 
+	   t /= 2; //compute the new length of the balanced tree
 	   }
 
    /* Create the deepest leaves */
    lc = height + 1 - (1 << l); if (lc == 0) lc = (1 << (l - 1));
-   inputNode = compress(inputNode,lc);
+   inputNode = compress(inputNode,lc); // this is a left rotate
 
    height -= lc;
    while (height > 1) { /* Sequence of left rotations */
       height /= 2;
-      inputNode = compress(inputNode,height);
+      inputNode = compress(inputNode,height); // keep doing left rotates
    }
 
-   //return T;
 
 }
 bstdswNode * bstdsw::compress(bstdswNode *inputNode, int count){
@@ -352,7 +272,7 @@ bstdswNode * bstdsw::compress(bstdswNode *inputNode, int count){
 	temp = inputNode;
 	
 	while (count) {
-		temp->rightChild = rotateLeft(temp->rightChild);
+		temp->rightChild = rotateLeft(temp->rightChild); //performs a left rotate
 		temp = temp->rightChild;
 		--count;
 	}
@@ -360,69 +280,13 @@ bstdswNode * bstdsw::compress(bstdswNode *inputNode, int count){
    return inputNode;
 }
 
-/***************************
-int bstdsw::greatestPowerOf2LessThanN(int n) {
-  int x = MSB(n);//MSB
-  return (1 << x);//2^x
-}
-
-int bstdsw::MSB(int n) {
-  int ndx = 0;
-  while (1 < n) {
-    n = (n >> 1);
-    ndx++;
-  }
-  return ndx;
-}
-void bstdsw::makeRotations(int bound) {
-  
-  bstdswNode *grandParent = NULL;
-  bstdswNode *parent = root;
-  bstdswNode *child = root->rightChild;
-  
-  for (; bound > 0; bound--) {
-      if (child != NULL) {
-       // rotateLeft(grandParent, parent, child);
-        grandParent = child;
-        parent = grandParent->rightChild;
-        if(grandParent->rightChild){
-            child = parent->rightChild;
-        }
-        else{
-            std::cout <<"No grandparent with a rightchild\n";
-            break; }
-        
-      } 
-      else {
-          std::cout << "Couldn't perform rotations\n";
-        break;
-      }
-    }
-}
- 
-************************************/
-
-
-
 void bstdsw::genDataS1(){
 
 	for(int i = 1; i<=100; i++){
 		insert(i);
 
 			if(i % 10 == 0 && i!=0){
-			/********
-			std::cout<<"\n";
-			std::cout <<"Height after " << i << " insertions: " << printHeight() <<"\n";
-			std::cout <<"Tree structure after " << i << " insertions \n";
-			displayTreeInOrder();
 
-            std::cout <<"\nRunning DSW algorithm after " << i << " insertions: \n";
-            createBackBone();
-            std::cout << printHeight() << "\n";
-
-			std::cout<<"\n";
-
-			***********/
 				std::cout<<"\n";
                 std::cout <<"Initial "; // Original root is:
                 printRoot();
@@ -434,7 +298,7 @@ void bstdsw::genDataS1(){
 				displayTreeInOrder();
 				std::cout <<"\nInitial BST Height after " << i << " insertions: " << printHeight() <<"\n";
 
-				std::cout <<"\n\nRight Degnerate Tree: \n";
+				std::cout <<"\n\nRight Skewed Tree: \n";
                 std::cout <<"Creating backbone after " << i << " insertions: \n";
                 createBackBone(); // should only have right children and NO left children, asecnding order.
                 std::cout << "New "; // New root is
@@ -500,7 +364,7 @@ void bstdsw::genDataS2(){
 				displayTreeInOrder();
 				std::cout <<"\nInitial BST Height after " << counter << " insertions: " << printHeight() <<"\n";
 
-				std::cout <<"\n\nRight Degnerate Tree: \n";
+				std::cout <<"\n\nRight Skewed Tree: \n";
                 std::cout <<"Creating backbone after " << counter << " insertions: \n";
                 createBackBone(); // should only have right children and NO left children, asecnding order.
                 std::cout << "New "; // New root is

@@ -30,10 +30,8 @@ class binarySearchTree{
         void genDataS2();
         int printHeight();
        
-        void binaryInsert(int key);
-        bool binaryRemove(int key);
-        int binarySearch(std::vector<int> &inputVector, int x);
-        int recursivebinarySearch(std::vector<int> &inputVector, int start, int end, int x);
+        //int binarySearch(std::vector<int> &inputVector, int x);
+        //int recursivebinarySearch(std::vector<int> &inputVector, int start, int end, int x);
         
 
         
@@ -45,7 +43,7 @@ class binarySearchTree{
         void displayTreePreOrderHelper( bstNode *node);
         int printHeightHelper(bstNode *node);
 
-        bstNode & getSuccessor(bstNode *nodetoDelete);
+       // bstNode & getSuccessor(bstNode *nodetoDelete);
 
 
 
